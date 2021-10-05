@@ -1,17 +1,17 @@
 import { remove } from 'mobx';
-import React, { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import React from 'react';
 import { Button, ScrollView, TextInput, View ,StyleSheet,Text, TouchableOpacity} from 'react-native';
+import {superhero, SuperHero} from '../MOBX/Todo_state';
 
-
-function ToDo_Mobx(props) {
-  
-  const [count,setCount]=useState(0)
+export default ToDo_Mobx = observer( ()=> {
+/*  const [count,setCount]=useState(0)
   const [item,setItem]=useState()
   const [items,setItemss]=useState([])
   const removeItem =(index)=> {
     let itemscopy=[...items];
     itemscopy.splice(index,1);
-    setItemss(itemscopy);
+    setItemss(itemscopy);d
 
   }
   useEffect(()=>{
@@ -21,7 +21,7 @@ function ToDo_Mobx(props) {
   });
   const addItems =()=>{
       setItemss([...items,item]);
-  }
+  } */
   
   
   return (
@@ -35,13 +35,13 @@ function ToDo_Mobx(props) {
         <View style={styles.row}>
         <View style={styles.input}>
           <TextInput placeholder="add item"
-          onChangeText={item=>setItem(item)}
+          onChangeText={(text)=>{superhero.tache=text}}
           /> 
         </View>
         <View>
           <Button
           title="add item"
-            onPress={()=>addItems()}
+            onPress={()=>superhero.addTaches(superhero.tache)}
 
 
           />
@@ -51,10 +51,10 @@ function ToDo_Mobx(props) {
         </View>
         <View style={styles.tasks}>
           {
-             items.map((data,index)=>{
+             superhero.taches.map((data,index)=>{
               return (
                  
- <TouchableOpacity  onPress={()=>removeItem(index)} >
+ <TouchableOpacity  onPress={()=>superhero.removetache(index)} >
                   
                  <View style={styles.itemrow}>
 
@@ -62,7 +62,7 @@ function ToDo_Mobx(props) {
                  <View>
                  <Button 
                   title="remove me"
-                  onPress={()=>removeItem(index)}
+                  onPress={()=>superhero.removetache(index)}
 
                   />
                  </View>
@@ -81,8 +81,8 @@ function ToDo_Mobx(props) {
     
   );
 }
+)
 
-export default ToDo_Mobx;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
