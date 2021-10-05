@@ -1,21 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react'
+import {
+  StyleSheet,
+  Text,
+  ScrollView
+} from 'react-native';
+import ListItems from './Components/listItems'
+import AddItems from './Components/addItems'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start worssssssssking on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends Component {
+  render () {
+    return (
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps='always'
+      >
+        <Text style={styles.welcome}>
+          Welcome to MobX
+        </Text>
+        
+      </ScrollView>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#F5FCFF',
+    padding: 20
   },
-});
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10
+  }
+})
